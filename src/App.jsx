@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Notate from "./notation/Notate";
 import "./App.css";
 
