@@ -10,7 +10,7 @@ const Notate = () => {
       const vf = new Factory({
         renderer: {
           elementId: notationRef.current.id,
-          width: 500,
+          width: 900,
           height: 200,
         },
       });
@@ -33,7 +33,10 @@ const Notate = () => {
     // Optional: Cleanup function if needed on unmount.
   }, []); // The empty dependency array means this useEffect runs once when the component is mounted and the cleanup runs when it's unmounted.
 
-  return <div ref={notationRef} id="notation-root">{notationRef.current.id}</div>;
+  return (
+    <div ref={notationRef} id="notation-root">
+    </div>
+  );
 };
 
 export default Notate;
