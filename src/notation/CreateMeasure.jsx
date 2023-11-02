@@ -2,8 +2,16 @@ import Vex from "vexflow";
 import { useEffect, useRef } from "react";
 import AddNotes from "./AddNotes";
 const { Renderer, Stave } = Vex.Flow;
-
-const CreateMeasure = () => {
+const CreateMeasure = (props) => {
+  const {
+    renderWidth,
+    renderHeight,
+    staveX,
+    staveY,
+    staveWidth,
+    clef,
+    timeSignature,
+  } = props;
   const notationRef = useRef(null);
 
   useEffect(() => {
@@ -12,10 +20,10 @@ const CreateMeasure = () => {
         notationRef.current.id,
         Renderer.Backends.SVG
       );
-      renderer.resize(900, 250);
+      renderer.resize(renderWidth, renderHeight);
       const context = renderer.getContext();
-      const stave = new Stave(110, 60, 275);
-      stave.addClef("treble").addTimeSignature("4/4");
+      const stave = new Stave(staveX, staveY, staveWidth);
+      stave.addClef(clef).addTimeSignature(timeSignature);
       stave.setContext(context).draw();
 
       AddNotes(1, 4, 150, context, stave, ["c/4"], "q");
@@ -26,7 +34,15 @@ const CreateMeasure = () => {
         }
       };
     }
-  }, []);
+  }, [
+    renderWidth,
+    renderHeight,
+    staveX,
+    staveY,
+    staveWidth,
+    clef,
+    timeSignature,
+  ]);
 
   return (
     <>
