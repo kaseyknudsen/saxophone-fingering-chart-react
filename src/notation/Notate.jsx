@@ -1,33 +1,24 @@
 import { useRef, useEffect } from "react";
 import { Vex } from "vexflow";
-const { Factory } = Vex.Flow;
+const { Renderer, Stave } = Vex.Flow;
 
 const Notate = () => {
   const notationRef = useRef(null); // Using a ref to reference the div.
 
   useEffect(() => {
     if (notationRef.current) {
-      const vf = new Factory({
-        renderer: {
-          elementId: notationRef.current.id,
-          width: 900,
-          height: 200,
-        },
-      });
-
-      const score = vf.EasyScore();
-      const system = vf.System();
-
-      system
-        .addStave({
-          voices: [
-            // score.voice(score.notes("C#5/q, B4, A4, G#4", { stem: "up" })),
-          ],
-        })
-        .addClef("treble")
-        .addTimeSignature("4/4");
-
-      vf.draw(); // Ensure you call this to render the notation.
+      //sets up space to render music
+      const renderer = new Renderer(
+        notationRef.current.id,
+        Renderer.Backends.SVG
+      );
+      renderer.resize(900, 250);
+      //context does the drawing
+      const context = renderer.getContext();
+      //x, y, width
+      const stave = new Stave(110, 60, 200);
+      stave.addClef("treble");
+      stave.setContext(context).draw();
     }
 
     // Optional: Cleanup function if needed on unmount.
@@ -38,7 +29,11 @@ const Notate = () => {
     };
   }, []); // The empty dependency array means this useEffect runs once when the component is mounted and the cleanup runs when it's unmounted.
 
-  return <div ref={notationRef} id="notation-root"></div>;
+  return (
+    <>
+      <div ref={notationRef} id="notation-root"></div>
+    </>
+  );
 };
 
 export default Notate;
