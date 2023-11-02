@@ -2,16 +2,15 @@ import Vex from "vexflow";
 import { useEffect, useRef } from "react";
 import AddNotes from "./AddNotes";
 const { Renderer, Stave } = Vex.Flow;
-const CreateMeasure = (props) => {
-  const {
-    renderWidth,
-    renderHeight,
-    staveX,
-    staveY,
-    staveWidth,
-    clef,
-    timeSignature,
-  } = props;
+const CreateMeasure = ({
+  renderWidth,
+  renderHeight,
+  staveX,
+  staveY,
+  staveWidth,
+  clef,
+  timeSignature,
+}) => {
   const notationRef = useRef(null);
 
   useEffect(() => {

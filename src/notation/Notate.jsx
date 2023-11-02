@@ -7,7 +7,7 @@ const Notate = () => {
       renderHeight={250}
       staveX={110}
       staveY={60}
-      staveWidth={275}
+      staveWidth={600}
       clef={"treble"}
       timeSignature={"4/4"}
     />
