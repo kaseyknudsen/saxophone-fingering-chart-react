@@ -7,9 +7,9 @@ const Notate = () => {
       renderHeight={250}
       staveX={110}
       staveY={60}
-      staveWidth={600}
+      staveWidth={1200}
       clef={"treble"}
-      timeSignature={"4/4"}
+      timeSignature={"10/4"}
     />
   );
 };

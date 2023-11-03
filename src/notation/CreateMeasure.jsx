@@ -1,7 +1,9 @@
 import Vex from "vexflow";
 import { useEffect, useRef } from "react";
 import AddNotes from "./AddNotes";
-const { Renderer, Stave } = Vex.Flow;
+import AddModifier from "./AddModifier";
+import noteArray from "./noteData";
+const { Renderer, Stave, Accidental } = Vex.Flow;
 const CreateMeasure = ({
   renderWidth,
   renderHeight,
@@ -15,6 +17,7 @@ const CreateMeasure = ({
 
   useEffect(() => {
     if (notationRef.current) {
+      console.log(noteArray);
       const renderer = new Renderer(
         notationRef.current.id,
         Renderer.Backends.SVG
@@ -25,7 +28,7 @@ const CreateMeasure = ({
       stave.addClef(clef).addTimeSignature(timeSignature);
       stave.setContext(context).draw();
 
-      AddNotes(1, 4, 150, context, stave, ["c/4"], "q");
+      AddNotes(10, 4, context, stave, noteArray);
 
       return () => {
         if (notationRef.current) {

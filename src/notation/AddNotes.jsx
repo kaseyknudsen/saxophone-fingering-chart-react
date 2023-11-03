@@ -1,22 +1,20 @@
 import Vex from "vexflow";
-
 const { StaveNote, Formatter, Voice } = Vex.Flow;
 
-const AddNotes = (
+const AddNotes = ({
   num_beats,
   beat_value,
-  width_between_notes,
   context,
   stave,
-  keys,
-  duration
-) => {
-  const notes = [new StaveNote({ keys, duration })];
+  notesArray
+}) => {
+  const notes = notesArray.map((note, idx) => {
+    return new StaveNote({ keys: note.keys, duration: note.duration });
+  });
   const voice = new Voice({ num_beats, beat_value });
   voice.addTickables(notes);
-  new Formatter().joinVoices([voice]).format([voice], width_between_notes);
+  new Formatter().joinVoices([voice]).format([voice], 150);
   voice.draw(context, stave);
-  return { notes, voice };
 };
 
 export default AddNotes;
