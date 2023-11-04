@@ -9,7 +9,7 @@ const Notate = () => {
       staveY={60}
       staveWidth={1200}
       clef={"treble"}
-      timeSignature={"10/4"}
+      timeSignature={"11/4"}
     />
   );
 };

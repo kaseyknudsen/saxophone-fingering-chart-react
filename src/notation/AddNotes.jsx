@@ -1,7 +1,7 @@
 import Vex from "vexflow";
 const { StaveNote, Formatter, Voice } = Vex.Flow;
 
-const AddNotes = ({ num_beats, beat_value, context, stave, notesArray }) => {
+export const AddNotes = (num_beats, beat_value, context, stave, notesArray) => {
   const notes = notesArray.map((note, idx) => {
     return new StaveNote({ keys: note.keys, duration: note.duration });
   });

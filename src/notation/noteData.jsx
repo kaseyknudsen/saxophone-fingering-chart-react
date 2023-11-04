@@ -1,4 +1,5 @@
 const noteArray = [
+  { keys: ["a#/3"], duration: "q", accidental: "#" },
   { keys: ["a/3"], duration: "q" },
   { keys: ["b/3"], duration: "q" },
   { keys: ["c/4"], duration: "q" },
