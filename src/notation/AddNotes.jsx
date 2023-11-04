@@ -1,5 +1,5 @@
 import Vex from "vexflow";
-const { StaveNote, Formatter, Voice, Accidental } = Vex.Flow;
+const { StaveNote, Accidental } = Vex.Flow;
 
 export const AddNotes = (noteArray) => {
   return noteArray.map((note, idx) => {

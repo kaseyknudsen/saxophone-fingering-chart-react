@@ -1,9 +1,9 @@
-import Vex, { StaveNote } from "vexflow";
-import { useEffect, useRef, useState } from "react";
+import Vex from "vexflow";
+import { useEffect, useRef } from "react";
 import AddNotes from "./AddNotes";
 import noteArray from "./noteData";
 import { addTickables } from "./addTickables";
-const { Renderer, Stave, Accidental, Voice, Formatter } = Vex.Flow;
+const { Renderer, Stave } = Vex.Flow;
 
 const CreateMeasure = ({
   renderWidth,
