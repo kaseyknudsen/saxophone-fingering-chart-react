@@ -1,4 +1,6 @@
 import Vex from "vexflow";
+import AddAudio from "../audio/AddAudio";
+
 const { StaveNote, Accidental } = Vex.Flow;
 
 export const AddNotes = (noteArray) => {
@@ -10,6 +12,7 @@ export const AddNotes = (noteArray) => {
     if (note.accidental) {
       newNote.addModifier(new Accidental(note.accidental));
     }
+    <AddAudio />
     return newNote;
   });
 };

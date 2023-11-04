@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import AddNotes from "./AddNotes";
 import noteArray from "./noteData";
 import { addTickables } from "./addTickables";
+import AddAudio from "../audio/AddAudio";
 const { Renderer, Stave } = Vex.Flow;
 
 const CreateMeasure = ({
