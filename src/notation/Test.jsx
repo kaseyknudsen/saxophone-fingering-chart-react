@@ -5,13 +5,14 @@ import B from "../audio/chr_scale/Middle-B.mp3";
 
 const Test = () => {
   const noteRef = useRef(null);
-//   const audioContextRef = useRef(null);
+  //   const audioContextRef = useRef(null);
   const [audioContext, setAudioContext] = useState(null);
   const [audioBuffer, setAudioBuffer] = useState(null);
 
   useEffect(() => {
     //create staff
     const renderer = new Renderer(noteRef.current, Renderer.Backends.SVG);
+    // console.log(renderer)
     renderer.resize(600, 600);
     const context = renderer.getContext();
     const stave = new Stave(10, 40, 400);
@@ -21,8 +22,16 @@ const Test = () => {
     voice.addTickables(note);
     new Formatter().joinVoices([voice]).format([voice], 150);
     voice.draw(context, stave);
-    //add audio
 
+    //add audio
+    // Event listener for notes
+    const allSVGgs = document.querySelectorAll("svg g.vf-notehead");
+    console.log(allSVGgs);
+    for (const svg of allSVGgs) {
+      svg.addEventListener("click", playAudio);
+    }
+
+    /* create AudioContext -> update context state -> fetch audio -> create AudioBuffer for MP3 file -> decode buffer -> update buffer state -> load audio*/
     const newContext = new AudioContext();
     setAudioContext(newContext);
     const loadAudio = async () => {
@@ -37,19 +46,21 @@ const Test = () => {
 
     return () => {
       noteRef.current.innerHTML = "";
-      newContext.close();
+      //   newContext.close();
     };
   }, []);
 
+  /* create buffer source -> update state -> connect source to destination -> start source*/
   const playAudio = () => {
     if (audioContext && audioBuffer) {
       // Create a buffer source
       const source = audioContext.createBufferSource();
       source.buffer = audioBuffer;
       source.connect(audioContext.destination); // Connect to the speakers
-      source.start(); // Play the sound now
+      source.start(0); // Play the sound now
     }
   };
+  // Event listener for notes
 
   return (
     <>
